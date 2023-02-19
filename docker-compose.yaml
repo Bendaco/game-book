@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  postgres:
+    restart: always
+    image: postgres:14
+
+    shm_size: 1gb
+    hostname: postgres
+    container_name: haddock-postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - default
+    environment:
+      - "POSTGRES_PASSWORD=password"
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_DB=postgres"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
